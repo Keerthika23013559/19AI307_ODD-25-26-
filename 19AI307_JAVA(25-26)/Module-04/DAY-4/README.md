@@ -32,8 +32,8 @@ To write a Java program to demonstrate the **Abstract Factory Design Pattern** b
 ```java
 /*
 Program to implement Abstract Factory Pattern using Java
-Developed by: KARUNIYA M
-RegisterNumber:  212223240068
+Developed by: KEERTHIKA M P
+RegisterNumber:  212223240071
 */
 
 import java.util.Scanner;
