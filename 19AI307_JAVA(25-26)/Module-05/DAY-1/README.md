@@ -6,7 +6,7 @@ Write a Java program to read input from the user using **InputStreamReader**.
 
 
 ## AIM:
-To write a Java program to demonstrate **reading input using InputStreamReader and BufferedReader**.
+To write a Java program to demonstrate **reading input using InputStreamReader and BufferedReader**.A
 
 
 
@@ -28,8 +28,8 @@ To write a Java program to demonstrate **reading input using InputStreamReader a
 ```java
 /*
 Program to implement InputStreamReader using Java
-Developed by: KEERTHIKA M P
-RegisterNumber:  212223240071
+Developed by: KARUNIYA M
+RegisterNumber:  212223240068
 */
 
 import java.io.*;
