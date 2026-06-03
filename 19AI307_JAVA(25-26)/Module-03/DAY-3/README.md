@@ -35,8 +35,8 @@ ArcadeGame and PuzzleGame, each implementing its own scoring logic.
  ```
 /*
 Program to implement a conditional statement using Java
-Developed by: KARUNIYA M
-RegisterNumber:  212223240068
+Developed by: KEERTHIKA M P
+RegisterNumber:  212223240071
 */
 ```
 
