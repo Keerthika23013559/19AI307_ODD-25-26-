@@ -1,34 +1,24 @@
-# Ex.No:2(C) ACCESS SPECIFIERS
+# Ex.No:2(B) METHODS
 
 ## QUESTION:
-Write a Java program to create a class called BankAccount with private instance variables accountNumber and balance. Provide public getter and setter methods to access and modify these variables.
+Write a method int cube(int x) that calls a method int square(int x) internally to calculate the cube as x * square(x).
 
 ## AIM:
-To write a Java program that defines a class BankAccount with private attributes accountNumber and balance, and provides public getter and setter methods to access and modify these values.
+To write a Java program that defines a method cube(int x) which internally calls the method square(int x) to compute the cube of a number.
 
 ## ALGORITHM :
-1. Define a class BankAccount with two private instance variables:
+1. Define a class demo with two methods:
 
-        String accountNumber
+     square(int n) → returns n * n.
+     cube(int n) → returns n * square(n) by calling the square() method internally.
 
-        double balance
+2. In the main class, read an integer input from the user.
 
-3. Create public getter and setter methods for both variables:
+3. Create an object of the demo class.
 
-      getAccountNumber() and setAccountNumber()
-   
-   
-      getBalance() and setBalance()
+4. Call the cube() method using the object and print the result.
 
-5. In the main() method, create a Scanner object to read input from the user.
-
-6. Create an object of the BankAccount class.
-
-7. Read the account number and balance from the user and store them using setter methods.
-
-8. Retrieve and print the stored values using getter methods.
-
-9. Close the Scanner and end the program.
+5. End the program.
 
 
 
@@ -37,66 +27,48 @@ To write a Java program that defines a class BankAccount with private attributes
 ## PROGRAM:
  ```
 /*
-Program to implement a Access Specifiers using Java
+Program to implement a Methods using Java
 Developed by: KEERTHIKA M P
 RegisterNumber:  212223240071
+
 */
 ```
 
 ## SOURCE CODE:
 ```
-import java.util.Scanner;
-
-class BankAccount {
-   
-    private String accountNumber;
-    private double balance;
-
+import java.util.*;
+class demo
+{
+    public int square(int n)
+    {
+        return n*n;
+    }
+    public int cube(int n)
+    {
+        return n*square(n);
+    }
     
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-   
-    public double getBalance() {
-        return balance;
-    }
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
 }
-
-public class prog {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        BankAccount account = new BankAccount();
-
-        String accNo = sc.nextLine();
-        double bal = sc.nextDouble();
-
-        account.setAccountNumber(accNo);
-        account.setBalance(bal);
-
-        System.out.println("Account Number: " + account.getAccountNumber());
-        System.out.println("Balance: " + account.getBalance());
-
-        sc.close();
+public class main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        demo d=new demo();
+        System.out.println(d.cube(n));
     }
 }
 ```
 
+
 ## OUTPUT:
-<img width="826" height="465" alt="image" src="https://github.com/user-attachments/assets/972c4fcf-d9d0-43f8-bc30-518764a4d55e" />
+<img width="392" height="243" alt="image" src="https://github.com/user-attachments/assets/aa929a40-c871-4a15-8d09-12604778a14b" />
 
 
 
 ## RESULT:
-Therfore the program successfully stores account details using setter methods and retrieves them using getter methods.
-
+Therefore the program successfully computes the cube of a number by internally using the square method.
 
 
 
