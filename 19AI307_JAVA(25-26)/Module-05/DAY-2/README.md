@@ -31,8 +31,8 @@ To write a Java program to demonstrate **object serialization and deserializatio
 ```java
 /*
 Program to implement Serialization and Deserialization using Java
-Developed by: KARUNIYA M
-RegisterNumber:  212223240068
+Developed by: KEERTHIKA M P
+RegisterNumber:  212223240071
 */
 
 import java.io.*;
