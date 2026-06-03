@@ -29,8 +29,8 @@ To write a Java program to demonstrate the **Inner Class concept by accessing in
 ```java
 /*
 Program to implement Inner Class using Java
-Developed by: KEERTHIKA M P
-RegisterNumber: 212223240071
+Developed by: KARUNIYA M
+RegisterNumber: 212223240068
 */
 
 import java.util.Scanner;
