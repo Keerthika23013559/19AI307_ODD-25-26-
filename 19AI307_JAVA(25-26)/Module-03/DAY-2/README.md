@@ -1,31 +1,40 @@
-# Ex.No:3(b) POLYMORPHISM
+# Ex.No:3(C) ABSTRACTION
 
 ## QUESTION:
-Write a Java program to create a class Vehicle with a method called speedUp(). Create two subclasses Car and Bicycle. Override the speedUp() method in each subclass to increase the vehicle's speed differently.
+Create abstract class GameScore with method finalScore().  
+Subclasses:
+ArcadeGame: score = baseScore + (level × 100)
+PuzzleGame: score = (attempts ≤ 3) ? 1000 - (attempts × 100) : 500
 
 ## AIM:
-To create a Java program demonstrating method overriding by defining a base class Vehicle with a speedUp() method and overriding it in subclasses Car and Bicycle to increase speed differently.
+To write a Java program that uses an abstract class to calculate final game scores for two types of games:  
+ArcadeGame and PuzzleGame, each implementing its own scoring logic.
 
-## ALGORITHM :
-1. Create a parent class Vehicle with an integer variable speed and a method speedUp(int increment) that increases speed normally.
-
-2. Create a subclass Car that overrides speedUp() to increase speed by double the increment.
-
-3. Create a subclass Bicycle that overrides speedUp() to increase speed normally (same as parent but customized message).
-
-4. Read vehicle type and increment value from user.
-
-5. Based on the type, create an object of Car, Bicycle, or Vehicle.
-
-6. Call the speedUp(increment) method to show polymorphic behavior.
-
-
-
+## ALGORITHM:
+1. Create an abstract class `GameScore` with the abstract method `finalScore()`.
+2. Create subclass `ArcadeGame` with:
+   - Attributes: `base`, `level`
+   - Scoring rule: `finalScore = base + (level × 100)`
+3. Create subclass `PuzzleGame` with:
+   - Attribute: `attempts`
+   - Scoring rule:
+     - If attempts ≤ 3 → `finalScore = 1000 - (attempts × 100)`
+     - Else → `finalScore = 500`
+4. In the `main` method:
+   - Read `type` (1 for ArcadeGame, 2 for PuzzleGame)
+   - If `type == 1`:
+     - Read `base` and `level`
+     - Create `ArcadeGame` object
+   - Else:
+     - Read `attempts`
+     - Create `PuzzleGame` object
+   - Call `finalScore()` and print the result.
+5. End the program.
 
 ## PROGRAM:
  ```
 /*
-Program to implement a Polymorphism using Java
+Program to implement a conditional statement using Java
 Developed by: KEERTHIKA M P
 RegisterNumber:  212223240071
 */
@@ -33,70 +42,66 @@ RegisterNumber:  212223240071
 
 ## SOURCE CODE:
 ```
-import java.util.Scanner;
+import java.util.*;
 
-// Parent class
-class Vehicle {
-    int speed = 0;
-
-    void speedUp(int increment) {
-        speed += increment;
-        System.out.println("Vehicle speed increased to: " + speed + " km/h");
-    }
+abstract class GameScore
+{
+    abstract int finalScore();
 }
 
-
-class Car extends Vehicle {
+class ArcadeGame extends GameScore
+{
+    int base;
+    int level;
+    ArcadeGame(int base,int level)
+    {
+        this.base=base;
+        this.level=level;
+    }
     @Override
-    void speedUp(int increment) {
-        speed += increment * 2;
-        System.out.println("Car speed increased to: " + speed + " km/h");
+    int finalScore()
+    {
+        return (base+(level*100));
     }
 }
-
-
-class Bicycle extends Vehicle {
+class PuzzleGame extends GameScore
+{
+    int attempts;
+    PuzzleGame(int attempts)
+    {
+        this.attempts=attempts;
+    }
     @Override
-    void speedUp(int increment) {
-        speed += increment;
-        System.out.println("Bicycle speed increased to: " + speed + " km/h");
+    int finalScore()
+    {
+        return ((attempts <= 3) ? 1000 - (attempts * 100) : 500);
     }
 }
-
-
-public class TestVehicles {
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String type = sc.nextLine().toLowerCase();
-        int increment = sc.nextInt();
-
-        Vehicle vehicle;
-        if (type.equals("car")) {
-            vehicle = new Car();
-        } else if (type.equals("bicycle")) {
-            vehicle = new Bicycle();
+        int type = sc.nextInt();
+        GameScore game;
+        
+        if (type == 1) {
+            int base = sc.nextInt();
+            int level = sc.nextInt();
+            game = new ArcadeGame(base, level);
         } else {
-            vehicle = new Vehicle();
+            int attempts = sc.nextInt();
+            game = new PuzzleGame(attempts);
         }
-
-        vehicle.speedUp(increment);
+        
+        System.out.println(game.finalScore());
     }
 }
 ```
 
-
-
-
-
-
 ## OUTPUT:
-<img width="921" height="437" alt="image" src="https://github.com/user-attachments/assets/5c317382-efe2-4ec9-a2cf-67b2d4db68b4" />
-
-
+<img width="354" height="206" alt="image" src="https://github.com/user-attachments/assets/c7d29ada-3636-4732-847f-28a95ba50bc8" />
 
 ## RESULT:
-Therefore the  program successfully demonstrates method overriding by applying different speed increase behaviors for car and bicycle.
-
+The program successfully calculates and displays the final score based on game type and user input using abstract methods and dynamic method dispatch.
 
 
 
