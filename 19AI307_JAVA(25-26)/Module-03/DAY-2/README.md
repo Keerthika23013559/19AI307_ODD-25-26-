@@ -1,80 +1,102 @@
-# Ex.No:3(D) INTERFACE 
+# Ex.No:3(b) POLYMORPHISM
 
 ## QUESTION:
-Two types of traffic controllers decide whether a vehicle can pass based on signal color. The decision logic varies by controller.
-AggressiveController: Allows only if "GREEN".
-DefensiveController: Allows for "GREEN" or "YELLOW".
+Write a Java program to create a class Vehicle with a method called speedUp(). Create two subclasses Car and Bicycle. Override the speedUp() method in each subclass to increase the vehicle's speed differently.
 
 ## AIM:
-To develop a Java program that decides whether a vehicle can move or must stop based on the signal color and the type of traffic controller (Aggressive or Defensive) using interfaces.
+To create a Java program demonstrating method overriding by defining a base class Vehicle with a speedUp() method and overriding it in subclasses Car and Bicycle to increase speed differently.
 
 ## ALGORITHM :
-1. Define an interface `TrafficController` with the method:
-   - `boolean canGo(String signalColor)`
-2. Create class `AggressiveController` implementing the interface:
-   - Allows passage only if the signal color is GREEN.
-3. Create class `DefensiveController` implementing the interface:
-   - Allows passage if the signal color is GREEN or YELLOW.
-4. In the `main` method:
-   - Read `color` (signal color)
-   - Read `type` (controller type: 1 or 2)
-5. Based on `type`:
-   - If 1 → create `AggressiveController`
-   - Else → create `DefensiveController`
-6. Call `canGo(color)` to check permission.
-7. If true → print `"GO"`
-   - Else → print `"STOP"`
-8. End the program.
+1. Create a parent class Vehicle with an integer variable speed and a method speedUp(int increment) that increases speed normally.
+
+2. Create a subclass Car that overrides speedUp() to increase speed by double the increment.
+
+3. Create a subclass Bicycle that overrides speedUp() to increase speed normally (same as parent but customized message).
+
+4. Read vehicle type and increment value from user.
+
+5. Based on the type, create an object of Car, Bicycle, or Vehicle.
+
+6. Call the speedUp(increment) method to show polymorphic behavior.
+
+
+
 
 ## PROGRAM:
-  ```
+ ```
 /*
-Program to implement a conditional statement using Java
-Developed by: KEERTHIKA M P
-RegisterNumber:  212223240071
+Program to implement a Polymorphism using Java
+Developed by: KARUNIYA M
+RegisterNumber:  212223240068
 */
 ```
 
 ## SOURCE CODE:
 ```
-import java.util.*;
+import java.util.Scanner;
 
-interface TrafficController {
-    boolean canGo(String signalColor);
-}
+// Parent class
+class Vehicle {
+    int speed = 0;
 
-class AggressiveController implements TrafficController {
-    public boolean canGo(String signalColor) {
-        return signalColor.equalsIgnoreCase("GREEN");
+    void speedUp(int increment) {
+        speed += increment;
+        System.out.println("Vehicle speed increased to: " + speed + " km/h");
     }
 }
 
-class DefensiveController implements TrafficController {
-    public boolean canGo(String signalColor) {
-        return signalColor.equalsIgnoreCase("GREEN") || signalColor.equalsIgnoreCase("YELLOW");
+
+class Car extends Vehicle {
+    @Override
+    void speedUp(int increment) {
+        speed += increment * 2;
+        System.out.println("Car speed increased to: " + speed + " km/h");
     }
 }
 
-public class prog {
+
+class Bicycle extends Vehicle {
+    @Override
+    void speedUp(int increment) {
+        speed += increment;
+        System.out.println("Bicycle speed increased to: " + speed + " km/h");
+    }
+}
+
+
+public class TestVehicles {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String color = sc.next();
-        int type = sc.nextInt();
+        String type = sc.nextLine().toLowerCase();
+        int increment = sc.nextInt();
 
-        TrafficController ctrl = (type == 1) ? new AggressiveController() : new DefensiveController();
+        Vehicle vehicle;
+        if (type.equals("car")) {
+            vehicle = new Car();
+        } else if (type.equals("bicycle")) {
+            vehicle = new Bicycle();
+        } else {
+            vehicle = new Vehicle();
+        }
 
-        if (ctrl.canGo(color))
-            System.out.println("GO");
-        else
-            System.out.println("STOP");
+        vehicle.speedUp(increment);
     }
 }
 ```
 
+
+
+
+
+
 ## OUTPUT:
-<img width="431" height="202" alt="image" src="https://github.com/user-attachments/assets/893c86c5-b2f8-4240-8d2b-98ca05b093a6" />
+<img width="921" height="437" alt="image" src="https://github.com/user-attachments/assets/5c317382-efe2-4ec9-a2cf-67b2d4db68b4" />
+
+
 
 ## RESULT:
-The program successfully determines whether a vehicle can move based on the signal color and controller type using interface-based polymorphism.
+Therefore the  program successfully demonstrates method overriding by applying different speed increase behaviors for car and bicycle.
+
+
 
 
