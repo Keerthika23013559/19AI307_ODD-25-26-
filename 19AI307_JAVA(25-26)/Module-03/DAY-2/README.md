@@ -1,38 +1,33 @@
-# Ex.No:3(C) ABSTRACTION
+# Ex.No:3(D) INTERFACE 
 
 ## QUESTION:
-Create abstract class GameScore with method finalScore().  
-Subclasses:
-ArcadeGame: score = baseScore + (level × 100)
-PuzzleGame: score = (attempts ≤ 3) ? 1000 - (attempts × 100) : 500
+Two types of traffic controllers decide whether a vehicle can pass based on signal color. The decision logic varies by controller.
+AggressiveController: Allows only if "GREEN".
+DefensiveController: Allows for "GREEN" or "YELLOW".
 
 ## AIM:
-To write a Java program that uses an abstract class to calculate final game scores for two types of games:  
-ArcadeGame and PuzzleGame, each implementing its own scoring logic.
+To develop a Java program that decides whether a vehicle can move or must stop based on the signal color and the type of traffic controller (Aggressive or Defensive) using interfaces.
 
-## ALGORITHM:
-1. Create an abstract class `GameScore` with the abstract method `finalScore()`.
-2. Create subclass `ArcadeGame` with:
-   - Attributes: `base`, `level`
-   - Scoring rule: `finalScore = base + (level × 100)`
-3. Create subclass `PuzzleGame` with:
-   - Attribute: `attempts`
-   - Scoring rule:
-     - If attempts ≤ 3 → `finalScore = 1000 - (attempts × 100)`
-     - Else → `finalScore = 500`
+## ALGORITHM :
+1. Define an interface `TrafficController` with the method:
+   - `boolean canGo(String signalColor)`
+2. Create class `AggressiveController` implementing the interface:
+   - Allows passage only if the signal color is GREEN.
+3. Create class `DefensiveController` implementing the interface:
+   - Allows passage if the signal color is GREEN or YELLOW.
 4. In the `main` method:
-   - Read `type` (1 for ArcadeGame, 2 for PuzzleGame)
-   - If `type == 1`:
-     - Read `base` and `level`
-     - Create `ArcadeGame` object
-   - Else:
-     - Read `attempts`
-     - Create `PuzzleGame` object
-   - Call `finalScore()` and print the result.
-5. End the program.
+   - Read `color` (signal color)
+   - Read `type` (controller type: 1 or 2)
+5. Based on `type`:
+   - If 1 → create `AggressiveController`
+   - Else → create `DefensiveController`
+6. Call `canGo(color)` to check permission.
+7. If true → print `"GO"`
+   - Else → print `"STOP"`
+8. End the program.
 
 ## PROGRAM:
- ```
+  ```
 /*
 Program to implement a conditional statement using Java
 Developed by: KEERTHIKA M P
@@ -44,64 +39,42 @@ RegisterNumber:  212223240071
 ```
 import java.util.*;
 
-abstract class GameScore
-{
-    abstract int finalScore();
+interface TrafficController {
+    boolean canGo(String signalColor);
 }
 
-class ArcadeGame extends GameScore
-{
-    int base;
-    int level;
-    ArcadeGame(int base,int level)
-    {
-        this.base=base;
-        this.level=level;
-    }
-    @Override
-    int finalScore()
-    {
-        return (base+(level*100));
+class AggressiveController implements TrafficController {
+    public boolean canGo(String signalColor) {
+        return signalColor.equalsIgnoreCase("GREEN");
     }
 }
-class PuzzleGame extends GameScore
-{
-    int attempts;
-    PuzzleGame(int attempts)
-    {
-        this.attempts=attempts;
-    }
-    @Override
-    int finalScore()
-    {
-        return ((attempts <= 3) ? 1000 - (attempts * 100) : 500);
+
+class DefensiveController implements TrafficController {
+    public boolean canGo(String signalColor) {
+        return signalColor.equalsIgnoreCase("GREEN") || signalColor.equalsIgnoreCase("YELLOW");
     }
 }
-public class Main {
+
+public class prog {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        String color = sc.next();
         int type = sc.nextInt();
-        GameScore game;
-        
-        if (type == 1) {
-            int base = sc.nextInt();
-            int level = sc.nextInt();
-            game = new ArcadeGame(base, level);
-        } else {
-            int attempts = sc.nextInt();
-            game = new PuzzleGame(attempts);
-        }
-        
-        System.out.println(game.finalScore());
+
+        TrafficController ctrl = (type == 1) ? new AggressiveController() : new DefensiveController();
+
+        if (ctrl.canGo(color))
+            System.out.println("GO");
+        else
+            System.out.println("STOP");
     }
 }
 ```
 
 ## OUTPUT:
-<img width="354" height="206" alt="image" src="https://github.com/user-attachments/assets/c7d29ada-3636-4732-847f-28a95ba50bc8" />
+<img width="431" height="202" alt="image" src="https://github.com/user-attachments/assets/893c86c5-b2f8-4240-8d2b-98ca05b093a6" />
 
 ## RESULT:
-The program successfully calculates and displays the final score based on game type and user input using abstract methods and dynamic method dispatch.
-
+The program successfully determines whether a vehicle can move based on the signal color and controller type using interface-based polymorphism.
 
 
